@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,20 +8,18 @@ using Microsoft.EntityFrameworkCore;
 using CarRentalCompany.Data;
 using CarRentalCompany.Repositories.Contracts;
 
-namespace CarRentalCompany.Pages.Cars
+namespace CarRentalCompany.Pages.Brands
 {
-
     public class DetailsModel : PageModel
     {
+        private readonly IGenericRepository<Brand> _repository;
 
-        private readonly ICarsRepository _repository;
-
-        public DetailsModel(ICarsRepository repository)
+        public DetailsModel(IGenericRepository<Brand> repository)
         {
             this._repository = repository;
         }
 
-        public Car Car { get; set; }
+        public Brand Brand { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,9 +28,9 @@ namespace CarRentalCompany.Pages.Cars
                 return NotFound();
             }
 
-            Car = await _repository.GetCarWithDetails(id.Value);
+            Brand = await _repository.Get(id.Value);
 
-            if (Car == null)
+            if (Brand == null)
             {
                 return NotFound();
             }

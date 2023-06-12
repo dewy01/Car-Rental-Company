@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,22 +8,22 @@ using Microsoft.EntityFrameworkCore;
 using CarRentalCompany.Data;
 using CarRentalCompany.Repositories.Contracts;
 
-namespace CarRentalCompany.Pages.Cars
+namespace CarRentalCompany.Pages.Brands
 {
     public class IndexModel : PageModel
     {
-        private readonly ICarsRepository _repository;
+        private readonly IGenericRepository<Brand> _repository;
 
-        public IndexModel(ICarsRepository repository)
+        public IndexModel(IGenericRepository<Brand> repository)
         {
             this._repository = repository;
         }
 
-        public IList<Car> Cars { get; set; }
+        public IList<Brand> Brands { get;set; }
 
         public async Task OnGetAsync()
         {
-            Cars = await _repository.GetCarsWithDetails();
+            Brands = await _repository.GetAll();
         }
 
         public async Task<IActionResult> OnPostDelete(int? recordid)
@@ -32,7 +32,6 @@ namespace CarRentalCompany.Pages.Cars
             {
                 return NotFound();
             }
-
             await _repository.Delete(recordid.Value);
 
             return RedirectToPage();

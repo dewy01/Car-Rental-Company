@@ -1,5 +1,9 @@
 using CarRentalCompany.Data;
+using CarRentalCompany.Repositories.Contracts;
+using CarRentalCompany.Repositories.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +15,14 @@ builder.Services.AddDbContext<CarRentalCompanyDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+builder.Services.AddIdentityCore<IdentityUser>(options => { options.SignIn.RequireConfirmedAccount = false; } )
+	.AddRoles<IdentityRole>()
+	.AddEntityFrameworkStores<CarRentalCompanyDbContext>();
+	
 
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped<ICarModelsRepository, CarModelsRepository>();
+builder.Services.AddScoped<ICarsRepository, CarsRepository>();
 builder.Services.AddRazorPages();
 
 

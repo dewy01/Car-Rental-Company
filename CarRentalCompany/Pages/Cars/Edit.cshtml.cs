@@ -8,18 +8,20 @@ using Microsoft.EntityFrameworkCore;
 using CarRentalCompany.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using CarRentalCompany.Repositories.Contracts;
+
+
 namespace CarRentalCompany.Pages.Cars
 {
-    public class CreateModel : PageModel
+    public class EditModel : PageModel
     {
         private readonly ICarsRepository _carRepository;
-        private readonly ICarModelsRepository _carModelRepository;
+        private readonly IGenericRepository<CarModel> _carModelRepository;
         private readonly IGenericRepository<Colour> _colourRepository;
         private readonly IGenericRepository<Brand> _brandsRepository;
 
-        public CreateModel(ICarsRepository carRepository,
+        public EditModel(ICarsRepository carRepository,
             IGenericRepository<Brand> brandsRepository,
-            ICarModelsRepository carModelRepository,
+            IGenericRepository<CarModel> carModelRepository,
             IGenericRepository<Colour> colourRepository
         )
         {
@@ -33,16 +35,25 @@ namespace CarRentalCompany.Pages.Cars
         public Car Car { get; set; }
 
         public SelectList Brands { get; set; }
-        public SelectList Colours { get; set; }
-        public SelectList Models { get; set; }
+        public SelectList Models { get; private set; }
+        public SelectList Colours { get; private set; }
 
-        public async Task<IActionResult> OnGet()
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
+            Car = await _carRepository.Get(id.Value);
+
+            if (Car == null)
+            {
+                return NotFound();
+            }
+
             await LoadInitialData();
+
             return Page();
         }
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
 
@@ -52,14 +63,23 @@ namespace CarRentalCompany.Pages.Cars
                 return Page();
             }
 
-            await _carRepository.Insert(Car);
+            try
+            {
+                await _carRepository.Update(Car);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!await CarExistsAsync(Car.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
             return RedirectToPage("./Index");
-        }
-
-        public async Task<JsonResult> OnGetCarModels(int brandId)
-        {
-            return new JsonResult(await _carModelRepository.GetCarModelsByBrand(brandId));
         }
 
         private async Task LoadInitialData()
@@ -67,6 +87,11 @@ namespace CarRentalCompany.Pages.Cars
             Brands = new SelectList(await _brandsRepository.GetAll(), "Id", "Name");
             Models = new SelectList(await _carModelRepository.GetAll(), "Id", "Name");
             Colours = new SelectList(await _colourRepository.GetAll(), "Id", "Name");
+        }
+
+        private async Task<bool> CarExistsAsync(int id)
+        {
+            return await _carRepository.Exists(id);
         }
     }
 }
