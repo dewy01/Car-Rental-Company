@@ -4,12 +4,13 @@
 @{
     ViewData["Title"] = "Index";
 }
-
 <h1>Brands</h1>
 
+<h5>Add and delete car companies that are available in your shop</h5>
+<br />
 <partial name="_CreateButtonPartial" />
 
-<table class="table">
+<table class="table" id="tabela">
     <thead>
         <tr>
             <th>
@@ -34,6 +35,8 @@
 </table>
 
 <partial name="_IndexDeleteFormPartial" />
+
+
 @section Scripts{
     <script src="~/js/IndexDeleteButtonScript.js"></script>
 }

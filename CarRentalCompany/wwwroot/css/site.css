@@ -9,10 +9,35 @@ html {
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
   margin-bottom: 60px;
+}
+
+.container {
+    font-family: 'Oswald', sans-serif;
+}
+
+.table{
+    width: 50%;
+}
+
+.footer{
+    background-color: lightgrey;
+}
+
+.nav-item{
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
+
+.row{
+    justify-content:center;
+}
+
+button{
+    padding: 5px;
 }
