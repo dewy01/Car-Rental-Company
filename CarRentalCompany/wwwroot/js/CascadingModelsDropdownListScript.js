@@ -6,7 +6,7 @@ LoadModels();
 
 $('#brands').change(function () {
     brandId = $(this).val();
-    $('models').html('<option>Select Model</option>');
+    $('#models').html('<option>Select Model</option>');
     LoadModels();
 });
 

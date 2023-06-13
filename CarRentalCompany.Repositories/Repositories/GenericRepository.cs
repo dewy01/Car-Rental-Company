@@ -15,7 +15,7 @@ namespace CarRentalCompany.Repositories.Repositories
         private readonly DbSet<TEntity> _db;
         public GenericRepository(CarRentalCompanyDbContext context)
         {
-            _context = context;
+            this._context = context;
             _db = _context.Set<TEntity>();
         }
 

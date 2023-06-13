@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using CarRentalCompany.Data.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CarRentalCompany.Data
 {
-    public class CarRentalCompanyDbContext : IdentityDbContext
+    public class CarRentalCompanyDbContext : IdentityDbContext<ApplicationUser>
     {
         public CarRentalCompanyDbContext(DbContextOptions<CarRentalCompanyDbContext> options) : base(options)
         {

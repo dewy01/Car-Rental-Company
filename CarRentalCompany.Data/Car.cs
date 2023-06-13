@@ -19,15 +19,14 @@ namespace CarRentalCompany.Data
         public int Year { get; set; }
 
         [Required]
-        [StringLength(50,ErrorMessage = "Name is too long")]
         [Display(Name = "Brand")]
         public int? BrandId { get; set; }
-        public virtual Brand Brand { get; set; }
+        public virtual Brand? Brand { get; set; }
         [Display(Name = "Colour")]
         public int? ColourId { get; set; }
-        public virtual Colour Colour { get; set; }
+        public virtual Colour? Colour { get; set; }
         [Display(Name = "Model")]
         public int? CarModelId { get; set; }
-        public virtual CarModel CarModel { get; set; }
+        public virtual CarModel? CarModel { get; set; }
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CarRentalCompany.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using CarRentalCompany.Repositories.Contracts;
+
 namespace CarRentalCompany.Pages.Cars
 {
     public class CreateModel : PageModel

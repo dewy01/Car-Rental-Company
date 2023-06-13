@@ -11,8 +11,8 @@ namespace CarRentalCompany.Data
     {
         [Display(Name="Brand")]
         public string Name { get; set; }
-        public virtual List<Car> Cars { get; set; }
-        public virtual List<CarModel> CarModels { get; set; }
+        public virtual List<Car>? Cars { get; set; }
+        public virtual List<CarModel>? CarModels { get; set; }
 
     }
 }

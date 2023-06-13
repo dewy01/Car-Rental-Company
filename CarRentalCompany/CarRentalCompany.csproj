@@ -12,10 +12,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
     <PackageReference Include="System.Diagnostics.Tools" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CarRentalCompany.Data\CarRentalCompany.Data.csproj" />
     <ProjectReference Include="..\CarRentalCompany.Repositories\CarRentalCompany.Repositories.csproj" />
   </ItemGroup>
 

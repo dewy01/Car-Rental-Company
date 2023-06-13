@@ -4,6 +4,7 @@ using CarRentalCompany.Repositories.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using CarRentalCompany.Data.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,7 @@ builder.Services.AddDbContext<CarRentalCompanyDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-builder.Services.AddIdentityCore<IdentityUser>(options => { options.SignIn.RequireConfirmedAccount = false; } )
+builder.Services.AddIdentityCore<ApplicationUser>(options => { options.SignIn.RequireConfirmedAccount = false; } )
 	.AddRoles<IdentityRole>()
 	.AddEntityFrameworkStores<CarRentalCompanyDbContext>();
 	

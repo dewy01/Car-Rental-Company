@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace CarRentalCompany.Data
 {
@@ -6,6 +7,6 @@ namespace CarRentalCompany.Data
     {
         [Display(Name = "Colour")]
         public string Name { get; set; }
-        public List<Car> Cars { get; set; }
+        public List<Car>? Cars { get; set; }
     }
 }
