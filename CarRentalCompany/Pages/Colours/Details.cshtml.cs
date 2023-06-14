@@ -7,19 +7,23 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CarRentalCompany.Data;
 using CarRentalCompany.Repositories.Contracts;
+using Microsoft.Identity.Client;
 
 namespace CarRentalCompany.Pages.Colours
 {
     public class DetailsModel : PageModel
     {
         private readonly IGenericRepository<Colour> _repository;
+        private readonly CarRentalCompanyDbContext _context;
 
-        public DetailsModel(IGenericRepository<Colour> repository)
+        public DetailsModel(IGenericRepository<Colour> repository, CarRentalCompanyDbContext context)
         {
             this._repository = repository;
+            _context = context;
+
         }
 
-        public Colour Colour { get; set; }
+        public List<Colour> Colour { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,7 +32,9 @@ namespace CarRentalCompany.Pages.Colours
                 return NotFound();
             }
 
-            Colour = await _repository.Get(id.Value);
+            //Colour = await _repository.Get(id.Value);
+            Colour = await _context.Colours.FromSqlRaw($"SelectColorById {id}").ToListAsync();
+
 
             if (Colour == null)
             {

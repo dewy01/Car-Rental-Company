@@ -38,6 +38,12 @@ body {
     justify-content:center;
 }
 
-button{
+a{
     padding: 5px;
 }
+
+a:hover {
+    background-color: gainsboro;
+    transition: 0.7s;
+}
+
