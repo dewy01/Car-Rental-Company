@@ -7,5 +7,20 @@
 <div class="text-center">
     <h1 class="display-4">FIND YOUR DREAM CAR</h1>
     <img src="https://img.freepik.com/premium-vector/car-company-logo-template_674522-78.jpg?w=2000" style="width:30%;">
-
+    <h4>Save your session!</h4>
+    <br />
+    <form method="post">
+        <span>Name: </span><input type="text" id="txtName" name="name" /><br /><br />
+        <input type="submit" id="btnWrite" asp-page-handler="WriteCookie" value="Create" />
+        <input type="submit" id="btnRead" asp-page-handler="ReadCookie" value="Check" />
+        <input type="submit" id="btnDelete" asp-page-handler="DeleteCookie" value="Remove" />
+        @if (ViewData["Message"] != null)
+        {
+            <script type="text/javascript">
+                window.onload = function () {
+                    alert('@ViewData["Message"]');
+                };
+            </script>
+        }
+    </form>
 </div>

@@ -1,12 +1,12 @@
 ﻿@page
-@model CarRentalCompany.Pages.Cars.RentModel
+@model CarRentalCompany.Pages.RentModel
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Rent your dream car</h1>
 
-<h5>Add a car you would like to rent to the shopping cart</h5>
+<h5>To rent a car contact us on: auto@Cars.com</h5>
 <br />
 <p>
 </p>
@@ -46,7 +46,7 @@
                 </td>
                 <td>
 
-                    //<form method="post">@Html.Hidden("id", item.Id)<input type="submit" value="Rent" /></form>
+                    @*<form method="post">@Html.Hidden("id", item.Id)<input type="submit" value="Rent" /></form>*@
                 </td>
             </tr>
         }

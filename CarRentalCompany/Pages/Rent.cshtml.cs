@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CarRentalCompany.Data;
 using CarRentalCompany.Repositories.Contracts;
 
-namespace CarRentalCompany.Pages.Cars
+namespace CarRentalCompany.Pages
 {
     public class RentModel : PageModel
     {
@@ -17,6 +17,7 @@ namespace CarRentalCompany.Pages.Cars
         public RentModel(ICarsRepository repository)
         {
             this._repository = repository;
+
         }
 
         public IList<Car> Cars { get; set; }
@@ -24,18 +25,12 @@ namespace CarRentalCompany.Pages.Cars
         public async Task OnGetAsync()
         {
             Cars = await _repository.GetCarsWithDetails();
+          
         }
 
-        public async Task<IActionResult> OnPostDelete(int? recordid)
+        public async Task OnPostAsync(int id)
         {
-            if (recordid == null)
-            {
-                return NotFound();
-            }
 
-            await _repository.Delete(recordid.Value);
-
-            return RedirectToPage();
         }
 
     }

@@ -25,6 +25,7 @@ builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositor
 builder.Services.AddScoped<ICarModelsRepository, CarModelsRepository>();
 builder.Services.AddScoped<ICarsRepository, CarsRepository>();
 builder.Services.AddRazorPages();
+builder.Services.AddHttpContextAccessor();
 
 
 
