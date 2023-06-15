@@ -4,10 +4,8 @@
         $('.deleteBtn').click(function (e) {
             swal({
                 title: "Are you sure?",
-                text: "Are you sure you want to delete this record?",
-                icon: "warning",
                 buttons: true,
-                dangerMode: true
+                dangerMode: flase
             }).then((confirm) => {
                 if (confirm) {
                     var btn = $(this);
