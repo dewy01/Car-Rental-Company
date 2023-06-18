@@ -11,6 +11,12 @@
 <a class="btn btn-info" asp-page="./Details" asp-route-id="@Model">
     <i class="fa fa-book-open" aria-hidden="true"></i> Details
 </a>
-<button class="btn btn-danger deleteBtn" data-id="@Model">
+<a class="btn btn-danger" asp-page="./Delete" asp-route-id="@Model">
+    <i class="fa fa-trash" aria-hidden="true"></i> Delete
+</a>
+
+@*
+<button type="button" class="btn btn-danger deleteBtn" id="deleteBtn" data-id="@Model">
     <i class="fa fa-trash" aria-hidden="true"></i> Delete
 </button>
+*@

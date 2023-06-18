@@ -1,0 +1,38 @@
+﻿@page
+@model CarRentalCompany.Pages.CarModels.DeleteModel
+@{
+}
+
+<h1>Delete</h1>
+<h4>Are you sure to delete?</h4>
+<div>
+    <hr />
+
+    <h4>Car</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model=>model.CarModel.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model=>model.CarModel.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model=>model.CarModel.Brand.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model=>model.CarModel.Brand.Name)
+        </dd>
+    </dl>
+    <form method="post">
+        <input type="hidden" asp-for="CarModel.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a class="btn btn-outline-primary" asp-page="Index"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Back to List</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
