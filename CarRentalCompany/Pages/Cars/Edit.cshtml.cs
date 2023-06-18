@@ -8,10 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using CarRentalCompany.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using CarRentalCompany.Repositories.Contracts;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarRentalCompany.Pages.Cars
 {
+    [Authorize]
     public class EditModel : PageModel
     {
         private readonly ICarsRepository _carRepository;

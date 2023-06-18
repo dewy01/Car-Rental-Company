@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace CarRentalCompany.Data
 {
-    public class Colour : BaseDomainEntity
+    public class Owner : BaseDomainEntity
     {
         [Required]
-        [MaxLength (255)]
-        [Display(Name = "Colour")]
+        [MaxLength(100)]
+        [Display(Name = "Owners")]
         public string Name { get; set; }
-        public List<Car>? Cars { get; set; }
+        public List<Car_Owner>? Car_Owners { get; set; }
     }
 }

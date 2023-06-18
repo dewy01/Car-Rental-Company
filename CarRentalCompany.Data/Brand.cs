@@ -9,6 +9,8 @@ namespace CarRentalCompany.Data
 {
     public class Brand : BaseDomainEntity
     {
+        [Required]
+        [MaxLength(255)]
         [Display(Name="Brand")]
         public string Name { get; set; }
         public virtual List<Car>? Cars { get; set; }

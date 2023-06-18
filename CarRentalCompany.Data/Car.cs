@@ -12,13 +12,11 @@ namespace CarRentalCompany.Data
 {
     public class Car : BaseDomainEntity
     {
-
         [Required]
-        [Range(1990,2024)]
+        [Range(1990, 2024)]
         [Display(Name = "Manufacture Year")]
         public int Year { get; set; }
 
-        [Required]
         [Display(Name = "Brand")]
         public int? BrandId { get; set; }
         public virtual Brand? Brand { get; set; }
@@ -28,5 +26,7 @@ namespace CarRentalCompany.Data
         [Display(Name = "Model")]
         public int? CarModelId { get; set; }
         public virtual CarModel? CarModel { get; set; }
+        [Display(Name = "Owners")]  
+        public virtual List<Car_Owner>? Car_Owners { get; set; }
     }
 }

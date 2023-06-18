@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using CarRentalCompany.Data;
 using CarRentalCompany.Repositories.Contracts;
 using Microsoft.Identity.Client;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarRentalCompany.Pages.Colours
 {
+    [Authorize]
     public class DetailsModel : PageModel
     {
         private readonly IGenericRepository<Colour> _repository;

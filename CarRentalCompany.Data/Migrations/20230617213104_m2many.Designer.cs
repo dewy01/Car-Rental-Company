@@ -4,6 +4,7 @@ using CarRentalCompany.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRentalCompany.Data.Migrations
 {
     [DbContext(typeof(CarRentalCompanyDbContext))]
-    partial class CarRentalCompanyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230617213104_m2many")]
+    partial class m2many
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,8 +38,7 @@ namespace CarRentalCompany.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -52,6 +54,7 @@ namespace CarRentalCompany.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("BrandId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int?>("CarModelId")
@@ -86,6 +89,7 @@ namespace CarRentalCompany.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("BrandId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DateCreated")
@@ -93,8 +97,7 @@ namespace CarRentalCompany.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -111,13 +114,13 @@ namespace CarRentalCompany.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CarId")
+                    b.Property<int>("CarId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("OwnerId")
+                    b.Property<int>("OwnerId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -142,8 +145,7 @@ namespace CarRentalCompany.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -163,8 +165,7 @@ namespace CarRentalCompany.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -175,7 +176,9 @@ namespace CarRentalCompany.Data.Migrations
                 {
                     b.HasOne("CarRentalCompany.Data.Brand", "Brand")
                         .WithMany("Cars")
-                        .HasForeignKey("BrandId");
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("CarRentalCompany.Data.CarModel", "CarModel")
                         .WithMany("Cars")
@@ -196,7 +199,9 @@ namespace CarRentalCompany.Data.Migrations
                 {
                     b.HasOne("CarRentalCompany.Data.Brand", "Brand")
                         .WithMany("CarModels")
-                        .HasForeignKey("BrandId");
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Brand");
                 });
@@ -205,11 +210,15 @@ namespace CarRentalCompany.Data.Migrations
                 {
                     b.HasOne("CarRentalCompany.Data.Car", "Car")
                         .WithMany("Car_Owners")
-                        .HasForeignKey("CarId");
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("CarRentalCompany.Data.Owner", "Owner")
                         .WithMany("Car_Owners")
-                        .HasForeignKey("OwnerId");
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Car");
 

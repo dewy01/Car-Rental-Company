@@ -1,5 +1,6 @@
 ﻿using CarRentalCompany.Data;
 using CarRentalCompany.Repositories.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace CarRentalCompany.Pages.CarModels
 {
+    [Authorize]
     public class EditModel : PageModel
     {
         private readonly IGenericRepository<CarModel> _carModelrepository;

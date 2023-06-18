@@ -5,7 +5,7 @@
 namespace CarRentalCompany.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class usernew : Migration
+    public partial class test1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

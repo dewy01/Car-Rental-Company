@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalCompany", "CarRent
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalCompany.Data", "CarRentalCompany.Data\CarRentalCompany.Data.csproj", "{8E9B849D-F35A-4034-9741-F7F3D4C598AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalCompany.Repositories", "CarRentalCompany.Repositories\CarRentalCompany.Repositories.csproj", "{E142F998-ACF3-4FE3-A722-BBBB4E034944}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalCompany.Repositories", "CarRentalCompany.Repositories\CarRentalCompany.Repositories.csproj", "{E142F998-ACF3-4FE3-A722-BBBB4E034944}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

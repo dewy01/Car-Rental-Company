@@ -4,6 +4,8 @@ namespace CarRentalCompany.Data
 {
     public class CarModel : BaseDomainEntity
     {
+        [Required]
+        [MaxLength(255)]
         [Display(Name = "Model")]
         public string Name { get; set; }
         [Display(Name = "Brand")]

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CarRentalCompany.Data;
 using CarRentalCompany.Repositories.Contracts;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarRentalCompany.Pages.CarModels
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly IGenericRepository<CarModel> _repository;

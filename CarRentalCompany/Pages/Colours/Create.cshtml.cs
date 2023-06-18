@@ -9,9 +9,11 @@ using CarRentalCompany.Data;
 using CarRentalCompany.Repositories.Contracts;
 using Microsoft.Data.Sqlite;
 using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarRentalCompany.Pages.Colours
 {
+    [Authorize]
     public class CreateModel : PageModel
     {
         private readonly IGenericRepository<Colour> _repository;
@@ -44,11 +46,18 @@ namespace CarRentalCompany.Pages.Colours
                 connection.Open();
                 var tableCmd = connection.CreateCommand();
                 tableCmd.CommandText =
-                    @$"INSERT INTO Colours(Name)
+                    @$"INSERT INTO Colours(Name,DateCreated)
                     VALUES(
-                        '{Colour.Name}')";
+                         @Colour,
+                         @Date)";
+
+                tableCmd.Parameters.Add("@Colour", System.Data.SqlDbType.VarChar, 50).Value=Colour.Name;
+                tableCmd.Parameters.Add("@Date", System.Data.SqlDbType.DateTime).Value = DateTime.Now;
+
                 tableCmd.ExecuteNonQuery();
+
             }
+
 
             return RedirectToPage("./Index");
         }

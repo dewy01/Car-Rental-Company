@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace CarRentalCompany.Data.Migrations
+namespace CarRentalCompany.Migrations
 {
     /// <inheritdoc />
-    public partial class next : Migration
+    public partial class testing : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using CarRentalCompany.Data;
 using CarRentalCompany.Repositories.Contracts;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarRentalCompany.Pages.Brands
 {
+    [Authorize]
     public class CreateModel : PageModel
     {
         private readonly IGenericRepository<Brand> _repository;

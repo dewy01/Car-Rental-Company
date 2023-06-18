@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CarRentalCompany.Data;
 using CarRentalCompany.Repositories.Contracts;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarRentalCompany.Pages.Brands
 {
+    [Authorize]
     public class DetailsModel : PageModel
     {
         private readonly IGenericRepository<Brand> _repository;

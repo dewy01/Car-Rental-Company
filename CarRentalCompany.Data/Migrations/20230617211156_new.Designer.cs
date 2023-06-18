@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRentalCompany.Data.Migrations
 {
     [DbContext(typeof(CarRentalCompanyDbContext))]
-    [Migration("20230615140611_users3")]
-    partial class users3
+    [Migration("20230617211156_new")]
+    partial class @new
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,6 +67,7 @@ namespace CarRentalCompany.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Year")
+                        .HasMaxLength(4)
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -89,6 +90,7 @@ namespace CarRentalCompany.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("BrandId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DateCreated")
@@ -103,6 +105,32 @@ namespace CarRentalCompany.Data.Migrations
                     b.HasIndex("BrandId");
 
                     b.ToTable("CarModels");
+                });
+
+            modelBuilder.Entity("CarRentalCompany.Data.Car_Owner", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarId");
+
+                    b.HasIndex("OwnerId");
+
+                    b.ToTable("Car_Owners");
                 });
 
             modelBuilder.Entity("CarRentalCompany.Data.Colour", b =>
@@ -137,8 +165,9 @@ namespace CarRentalCompany.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("DateOfBirth")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("DateOfBirth")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -148,9 +177,11 @@ namespace CarRentalCompany.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -197,6 +228,26 @@ namespace CarRentalCompany.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("CarRentalCompany.Data.Owner", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Owners");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -359,9 +410,30 @@ namespace CarRentalCompany.Data.Migrations
                 {
                     b.HasOne("CarRentalCompany.Data.Brand", "Brand")
                         .WithMany("CarModels")
-                        .HasForeignKey("BrandId");
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Brand");
+                });
+
+            modelBuilder.Entity("CarRentalCompany.Data.Car_Owner", b =>
+                {
+                    b.HasOne("CarRentalCompany.Data.Car", "Car")
+                        .WithMany("Car_Owners")
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CarRentalCompany.Data.Owner", "Owner")
+                        .WithMany("Car_Owners")
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Car");
+
+                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -422,6 +494,11 @@ namespace CarRentalCompany.Data.Migrations
                     b.Navigation("Cars");
                 });
 
+            modelBuilder.Entity("CarRentalCompany.Data.Car", b =>
+                {
+                    b.Navigation("Car_Owners");
+                });
+
             modelBuilder.Entity("CarRentalCompany.Data.CarModel", b =>
                 {
                     b.Navigation("Cars");
@@ -430,6 +507,11 @@ namespace CarRentalCompany.Data.Migrations
             modelBuilder.Entity("CarRentalCompany.Data.Colour", b =>
                 {
                     b.Navigation("Cars");
+                });
+
+            modelBuilder.Entity("CarRentalCompany.Data.Owner", b =>
+                {
+                    b.Navigation("Car_Owners");
                 });
 #pragma warning restore 612, 618
         }
