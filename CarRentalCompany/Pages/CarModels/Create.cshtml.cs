@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using CarRentalCompany.Data;
 using Microsoft.EntityFrameworkCore;
-using CarRentalCompany.Repositories.Contracts;
+using CarRentalCompany.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 
 namespace CarRentalCompany.Pages.CarModels

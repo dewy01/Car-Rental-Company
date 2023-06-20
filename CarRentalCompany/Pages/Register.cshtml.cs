@@ -1,5 +1,5 @@
 
-using CarRentalCompany.Repositories.Contracts;
+using CarRentalCompany.Repositories.Interfaces;
 using CarRentalCompany.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

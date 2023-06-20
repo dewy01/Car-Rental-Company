@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CarRentalCompany.Data;
-using CarRentalCompany.Repositories.Contracts;
+using CarRentalCompany.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 
 namespace CarRentalCompany.Pages.Colours

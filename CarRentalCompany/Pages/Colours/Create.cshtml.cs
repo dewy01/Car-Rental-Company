@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using CarRentalCompany.Data;
-using CarRentalCompany.Repositories.Contracts;
+using CarRentalCompany.Repositories.Interfaces;
 using Microsoft.Data.Sqlite;
 using Microsoft.Data.SqlClient;
 using Microsoft.AspNetCore.Authorization;

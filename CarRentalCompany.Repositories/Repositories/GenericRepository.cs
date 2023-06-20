@@ -1,4 +1,4 @@
-﻿using CarRentalCompany.Repositories.Contracts;
+﻿using CarRentalCompany.Repositories.Interfaces;
 using CarRentalCompany.Data;
 using System;
 using System.Collections.Generic;

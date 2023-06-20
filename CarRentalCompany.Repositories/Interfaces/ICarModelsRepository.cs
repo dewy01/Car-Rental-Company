@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRentalCompany.Repositories.Contracts
+namespace CarRentalCompany.Repositories.Interfaces
 {
     public interface ICarModelsRepository : IGenericRepository<CarModel>
     {

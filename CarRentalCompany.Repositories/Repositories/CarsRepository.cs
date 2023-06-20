@@ -1,5 +1,5 @@
 ﻿using CarRentalCompany.Data;
-using CarRentalCompany.Repositories.Contracts;
+using CarRentalCompany.Repositories.Interfaces;
 using CarRentalCompany.Repositories.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;

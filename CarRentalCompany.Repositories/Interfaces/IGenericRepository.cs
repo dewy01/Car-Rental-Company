@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CarRentalCompany.Data;
 
-namespace CarRentalCompany.Repositories.Contracts
+namespace CarRentalCompany.Repositories.Interfaces
 {
     public interface IGenericRepository<TEntity> where TEntity : BaseDomainEntity
     {

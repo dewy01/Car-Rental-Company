@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CarRentalCompany.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using CarRentalCompany.Repositories.Contracts;
+using CarRentalCompany.Repositories.Interfaces;
 using Microsoft.AspNetCore.Components.Forms;
 using NuGet.Protocol.Core.Types;
 using Microsoft.AspNetCore.Authorization;
