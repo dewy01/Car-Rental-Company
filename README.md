@@ -12,3 +12,17 @@ Many to many relation
 Authorization and authentication
 Server and client based validation
 Cookies
+
+STORED PROCEDURES
+
+CREATE PROCEDURE [dbo].[SelectAllColours]
+AS
+	SELECT * from Colours
+RETURN 0
+
+
+CREATE PROCEDURE [dbo].[SelectColorById]
+	@ColourId int
+AS
+	SELECT * from Colours where @ColourId = Id
+RETURN 0
